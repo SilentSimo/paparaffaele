@@ -25,8 +25,8 @@ client.on('guildMemberAdd', member => {
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
     // Send the message, mentioning the member
-    const pope = member.guild.emojis.get("687311736264851484");
-    channel.send(`Ciao ${member}! Benvenuto tra gli Italian Towelie!\nIo sono Papa Raffaele ${pope}\nQui ${rules} trovi il nostro regolamento!!\nSe qualcosa ancora non ti è chiaro...arrangiati...oppure chiedi in giro!!\nTi auguro di avere una bella esperienza qui con noi e di divertirti quanto ci divertiamo noi!!!`);
+    const pope = member.guild.emojis.cache.find(em => em.id === '687311736264851484');
+    channel.send(`Ciao ${member}! Benvenuto tra gli Italian Towelie!\nIo sono Papa Raffaele ${pope}\nQui ${rules} trovi il nostro regolamento!!\nSe qualcosa ancora non ti è chiaro...arrangiati...oppure prova a chiedermi aiuto con questo comando !aiuto!!\nTi auguro di avere una bella esperienza qui con noi e di divertirti quanto ci divertiamo noi!!!`);
   });
 
 client.login(token);
