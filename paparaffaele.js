@@ -24,14 +24,24 @@ client.on('guildMemberAdd', member => {
     const rules = member.guild.channels.cache.find(ch => ch.name === 'regole');
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
-    // Send the message, mentioning the member
     const pope = member.guild.emojis.cache.find(em => em.id === '687311736264851484');
+    // Send the message, mentioning the member
     channel.send(`Ciao ${member}! Benvenuto tra gli Italian Towelie!\nIo sono Papa Raffaele ${pope}\nQui ${rules} trovi il nostro regolamento!!\nSe qualcosa ancora non ti è chiaro...arrangiati...oppure prova a chiedermi aiuto con questo comando !aiuto!!\nTi auguro di avere una bella esperienza qui con noi e di divertirti quanto ci divertiamo noi!!!`);
   });
 
 client.login(token);
 
 client.on('message', message => {
+    
+    const words = message.content.split(/ +/);
+    console.log(words);
+    const pope = message.guild.emojis.cache.find(em => em.id === '687311736264851484');
+    for(var i= 0; i < words.length; i++){
+        if (words[i]=="benedizione" || words[i]=='<:Team_PapaRaffaele1989:687311736264851484>' || words[i]=="benedizione!" ) {
+            message.react(pope);
+        }
+    }
+    
     if (!message.content.startsWith(prefix) || message.author.bot) return;
   
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -40,7 +50,7 @@ client.on('message', message => {
     if (!client.commands.has(commandName)) return;
   
     const command = client.commands.get(commandName);
-  
+
     try {
         command.execute(message, args);
     } catch (error) {
